@@ -17,15 +17,15 @@ jobs:
         with:
           node-version: 18
 
-      - name: Go to project folder
+      - name: Move into project folder
         run: |
-          cd hazem-cafe-app
-          echo "Now in project folder"
-        shell: bash
+          cd hazem_github_ready
+          echo "Current directory:"
+          pwd
 
       - name: Install dependencies & EAS CLI
         run: |
-          cd hazem-cafe-app
+          cd hazem_github_ready
           npm install
           npm install -g eas-cli
 
@@ -33,17 +33,17 @@ jobs:
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
         run: |
-          cd hazem-cafe-app
+          cd hazem_github_ready
           eas whoami || eas login --token $EXPO_TOKEN
 
       - name: Configure EAS (non-interactive)
         run: |
-          cd hazem-cafe-app
+          cd hazem_github_ready
           eas build:configure --non-interactive || true
 
       - name: Start EAS Android build
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
         run: |
-          cd hazem-cafe-app
+          cd hazem_github_ready
           eas build -p android --profile production --non-interactive

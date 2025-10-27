@@ -1,4 +1,3 @@
-
 name: Build APK with EAS
 
 on:
@@ -9,6 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
@@ -19,7 +19,7 @@ jobs:
 
       - name: Install dependencies & EAS CLI
         run: |
-          npm ci
+          npm install
           npm install -g eas-cli
 
       - name: Login to Expo
